@@ -1,0 +1,77 @@
+<html lang="en-US">
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+      integrity=
+      "sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+      crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+      rel="stylesheet">
+    <link rel="stylesheet" href="static/styles/signup.css">
+
+    <title>Edu2You registration form</title>
+		{% with messages = get_flashed_messages() %}
+  		{% if messages %}
+    		<ul class=flashes>
+    		{% for message in messages %}
+      		<li>{{ message }}</li>
+    		{% endfor %}
+    		</ul>
+  		{% endif %}
+		{% endwith %}
+    <script src="/static/js/app.js"></script>
+    
+  </head>
+  
+  <body>
+    <div class="main-block">
+      <div class="left-part">
+        <i class="fas fa-graduation-cap"></i>
+        <h1>Register for Edu2You</h1>
+      </div>
+      <form method="post">
+        <div class="title">
+          <i class="fas fa-pencil-alt"></i> 
+          <h2>Sign up here</h2>
+        </div>
+        <div class="info">
+					<div class="checkbox">
+						<!-- Ideally based on which checkbox is checked, the page will dynamically change to the respective sign up form  -->
+          	<input type="checkbox" id="1" name="user_type" value="{{ request.form['user_type'] }}"
+              onclick="selectOnlyThis(this.id)" />Student      
+        		<input type="checkbox" id="2" name="user_type" value="{{ request.form['user_type'] }}"
+              onclick="selectOnlyThis(this.id)"/>Volunteer
+        	</div>
+          <input class="fname" type="text" name="fname" placeholder="First Name" value="{{
+            request.form['fname'] }}">
+					<input class="lname" type="text" name="lname" placeholder="Last Name" value="{{
+            request.form['lname'] }}">
+          <input type="text" name="uname" placeholder="Username" value="{{
+            request.form['uname'] }}">
+          <input type="password" name="pass" placeholder="Password" value="{{
+            request.form['pass'] }}">
+					<!-- What are your educational roadblocks? -->
+					
+					<div class="checkbox" id="roadblocks">
+            <h4>What are your educational roadblocks?</h4>
+						<input type="checkbox" name="difficulty" value="Age">Age<br>      
+	        	<input type="checkbox" name="difficulty"
+              value="Transportation">Transportation<br> 
+						<input type="checkbox" name="difficulty" value="Physical Disability">Physical
+            Disability<br> 
+						<input type="checkbox" name="difficulty" value="Technology">Technology<br> 
+						<input type="checkbox" name="difficulty" value="Alternative
+              Learner">Alternative Learner<br> 
+						<input type="checkbox" name="difficulty" value="Financial">Financial<br> 
+					</div>
+        </div>   
+        <button type="submit" href="/sign_up">Submit</button>
+      </form>
+    </div>
+  </body>
+  
+</html>
